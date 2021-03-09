@@ -9,8 +9,13 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:col-span-2">
                 <figure>
-                    <img class="w-full h-80 object-cover object-center" src="{{ Storage::url($post->image->url) }}"
-                        alt="">
+                    @if ($post->image)
+                        <img class="w-full h-72 object-cover object-center"
+                            src="{{ Storage::url($post->image->url) }}" alt="" />
+                    @else
+                        <img class="w-full h-72 object-cover object-center"
+                            src="https://crnnoticias.com/wp-content/uploads/2017/03/1-108.jpg" alt="" />
+                    @endif
                 </figure>
                 <div class="text-base text-gray-600 my-2 text-justify">
                     {{ $post->body }}
@@ -21,18 +26,23 @@
                 <ul>
                     @foreach ($similares as $similar)
                         <li class="my-2">
-                            <a href="{{route('posts.show', $similar)}}" class="flex">
-                                <img class="w-36 h-20 object-cover object-center" src="{{Storage::url($similar->image->url)}}" alt="" />
-                                <span class="ml-2 text-gray-600">{{$similar->name}}</span>
+                            <a href="{{ route('posts.show', $similar) }}" class="flex">
+                                @if ($similar->image)
+                                    <img class="w-full h-72 object-cover object-center"
+                                        src="{{ Storage::url($post->image->url) }}" alt="" />
+                                @else
+                                    <img class="w-full h-72 object-cover object-center"
+                                        src="https://crnnoticias.com/wp-content/uploads/2017/03/1-108.jpg" alt="" />
+                                @endif
+                                <span class="ml-2 text-gray-600">{{ $similar->name }}</span>
                             </a>
                         </li>
                     @endforeach
                 </ul>
                 <div class="my-4">
-                    {{$similares->links()}}
+                    {{ $similares->links() }}
                 </div>
             </aside>
         </div>
     </div>
 </x-app-layout>
-

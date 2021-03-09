@@ -2,7 +2,7 @@
     <div class="container mt-12 py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($posts as $post)
-                <article class="w-full h-80 bg-cover bg-center rounded-lg @if ($loop->first) md:col-span-2 @endif @if ($loop->last) lg:col-span-3 md:col-span-2 sm:col-span-1 @endif" style="background-image: url({{Storage::url($post->image->url)}}); opacity: 0.9;">
+                <article class="w-full h-80 bg-cover bg-center rounded-lg @if ($loop->first) md:col-span-2 @endif @if ($loop->last) lg:col-span-3 md:col-span-2 sm:col-span-1 @endif" style="background-image: url(@if($post->image){{Storage::url($post->image->url)}} @else https://crnnoticias.com/wp-content/uploads/2017/03/1-108.jpg @endif); opacity: 0.9;">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
                         <div>
                             @foreach ($post->tags as $tag)

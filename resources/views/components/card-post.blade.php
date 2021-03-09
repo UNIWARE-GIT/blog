@@ -1,7 +1,11 @@
 @props(['post'])
 
 <article class="my-4 bg-white shadow-lg rounded-lg overflow-hidden">
+    @if($post->image)
     <img class="w-full h-72 object-cover object-center" src="{{Storage::url($post->image->url)}}" alt="" />
+    @else
+    <img class="w-full h-72 object-cover object-center" src="https://crnnoticias.com/wp-content/uploads/2017/03/1-108.jpg" alt="" />
+    @endif
     <div class="px-6 py-4">
         <h1 class="font-bold text-xl mb-2">
             <a href="{{route('posts.show', $post)}}">{{$post->name}}</a>
